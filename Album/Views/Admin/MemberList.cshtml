@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Album.Models.TMember>
+
+@{
+    ViewData["Title"] = "會員列表";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4>會員列表</h4>
+<hr />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FUid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPwd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FRole)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FUid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FPwd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FRole)
+                </td>
+                <td>
+                    <a asp-action="MemberEdit" asp-route-Uid="@item.FUid" class="btn btn-warning">編輯</a>
+
+                    <a asp-action="MemberDelete" asp-route-Uid="@item.FUid" class="btn btn-danger"
+                       onclick="return confirm('確定要刪除嗎')">刪除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

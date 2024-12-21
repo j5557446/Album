@@ -1,0 +1,50 @@
+﻿@model Album.Models.TMember
+
+@{
+    ViewData["Title"] = "會員登入";
+}
+
+<h4>會員登入</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">帳號</label>
+                <input type="text" name="uid" required class="form-control" />
+                @*<span asp-validation-for="FUid" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label class="control-label">密碼</label>
+                <input type="password" name="pwd" required class="form-control" />
+                @*<span asp-validation-for="FPwd" class="text-danger"></span>*@
+            </div>
+            @*<div class="form-group">
+            <label asp-for="FName" class="control-label"></label>
+            <input asp-for="FName" class="form-control" />
+            <span asp-validation-for="FName" class="text-danger"></span>
+            </div>*@
+            @* <div class="form-group">
+            <label asp-for="FMail" class="control-label"></label>
+            <input asp-for="FMail" class="form-control" />
+            <span asp-validation-for="FMail" class="text-danger"></span>
+            </div>*@
+            @* <div class="form-group">
+            <label asp-for="FRole" class="control-label"></label>
+            <input asp-for="FRole" class="form-control" />
+            <span asp-validation-for="FRole" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="登入" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

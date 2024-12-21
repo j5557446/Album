@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Album.Models.TAlbum>
+
+@{
+    ViewData["Title"] = "相簿分類";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4>相簿分類-@ViewBag.CategoryName</h4>
+
+<hr />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FAlbumId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FAlbum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FReleaseTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FAlbumId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FDescription)
+                </td>
+                <td>
+                    <img src="~/Album/@item.FAlbum" style="width:180px;">
+                    @*@Html.DisplayFor(modelItem => item.FAlbum)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FReleaseTime)
+                </td>
+                <td>
+
+                    <a asp-action="AlbumDelete" asp-route-AlbumId="@item.FAlbumId" class="btn btn-danger"
+                       onclick="return confirm('確定要刪除嗎');">刪除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

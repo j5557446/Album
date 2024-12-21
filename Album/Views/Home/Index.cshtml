@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Album.Models.TAlbum>
+
+@{
+    ViewData["Title"] = "最新照片";
+}
+
+<h4>最新照片</h4>
+<hr />
+
+<div class="row">
+    @{
+        int index = 0;
+    }
+    @foreach (var item in Model)
+    {
+        index++;
+        <div class="col-12 col-md-4 mb-2">
+            <div class="card" style="width:100%;">
+                <img class="card-img-top" src="~/Album/@item.FAlbum" style="height: 240px;">
+                <div class="card-body">
+                    <h5 class="card-title">@item.FTitle</h5>
+                    <p class="card-text text-secondary">@item.FReleaseTime</p>
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+                    data-bs-target="#myModal_@index">詳細資料</button>
+
+                </div>
+            </div>
+        </div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal_@index">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">@item.FTitle </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img class="card-img-top" src="~/Album/@item.FAlbum" style="height: 240px;">
+        <p>
+            @item.FDescription
+        </p>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    }
+
+</div>
+

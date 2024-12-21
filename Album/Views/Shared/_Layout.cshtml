@@ -1,0 +1,91 @@
+﻿@using Album.Models;
+
+@inject AlbumDbContext _context;
+
+@{
+    var categories = _context.TCategories.ToList();
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - 政宇電子相簿網</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+       .form-group{
+           margin-top:10px;
+       }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-image: url('@Url.Content("~/images/white.jpg")');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" asp-action="Index">政宇電子相簿網</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+
+                     <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" href="#" role="button" id="navbardrop" data-bs-toggle="dropdown">
+                                相簿分類
+                         </a>
+                         <ul class="dropdown-menu">
+                                @foreach (var item in categories)
+                                {
+                                    <li><a class="dropdown-item" asp-action="AlbumCategory" 
+                                       asp-route-Cid="@item.FCid">@item.FCname</a></li>
+                                }
+                          </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="AlbumUpload">照片上傳</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Login">登入管理</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3">
+        @RenderBody()
+    </div>
+
+    <footer class="border-top text-muted mt-3">
+        <div class="container mt-3">
+            &copy; @DateTime.Now.Year -  政宇電子相簿網建置by <a href="#">陳政宇</a>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required:false)
+
+    @await Html.PartialAsync("_ToastPartial")
+
+</body>
+</html>

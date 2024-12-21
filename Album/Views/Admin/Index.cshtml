@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Album.Models.TCategory>
+
+@{
+    ViewData["Title"] = "相簿分類列表";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4>相簿分類列表</h4>
+<hr />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FCid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FCname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FCid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FCname)
+                </td>
+                <td>
+
+                    <a asp-action="CategoryEdit" asp-route-Cid="@item.FCid" class="btn btn-warning">編輯</a>
+                    <a asp-action="CategoryDelete" asp-route-Cid="@item.FCid" class="btn btn-danger"
+                       onclick="return confirm('確定刪除嗎');">刪除</a>
+                    <a asp-action="AlbumCategory" asp-route-Cid="@item.FCid" class="btn btn-info">瀏覽照片</a>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
